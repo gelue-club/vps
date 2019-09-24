@@ -2,24 +2,49 @@
 
 ## 目录
 
-- [ ] 更新现有软件包
+- [X] 升级内核
 
-- [ ] 升级内核
+- [X] 更新现有软件包
 
-- [ ] 使用 `yum` 安装一些依赖
+- [X] 使用 `yum` 安装一些依赖
 
-- [ ] 准备 `ngx_pagespeed`
-- [ ] 准备 `ngx_brotli`
-- [ ] 准备 `nginx-ct`
-- [ ] 准备 `openssl`
+- [X] 准备 `ngx_pagespeed`
+- [X] 准备 `ngx_brotli`
+- [X] 准备 `nginx-ct`
+- [X] 准备 `openssl`
 
-- [ ] 安装 `git`
-- [ ] 安装 `nginx`
-- [ ] 安装 `docker`
+- [X] 安装 `git`
+- [X] 安装 `nginx`
+- [X] 安装 `docker`
 
-- [ ] 安装 `netdata`
-- [ ] 安装 `oh-my-zsh`
-- [ ] 安装 `sharkdp/bat`
+- [X] 安装 `netdata`
+- [X] 安装 `oh-my-zsh`
+- [X] 安装 `sharkdp/bat`
+
+**升级内核**
+```shell
+# 查看当前内核版本
+uname -snr
+
+yum -y install yum-plugin-fastestmirror
+
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+
+rpm -Uvh https://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
+
+yum --enablerepo=elrepo-kernel install kernel-ml
+
+sudo awk -F\' '$1=="menuentry " {print i++ " : " $2}' /etc/grub2.cfg
+
+sudo grub2-set-default 0
+
+sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+
+sudo reboot
+
+# 检查内核是否已被更新
+uname -snr
+```
 
 **更新现有软件包**
 ```shell
