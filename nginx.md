@@ -20,6 +20,12 @@ ps -ef | grep nginx
 
 ```shell
 /usr/local/nginx/sbin/nginx -s reload
+
+# 或
+pkill -9 nginx && rm -rf /var/ngx_pagespeed_cache && mkdir /var/ngx_pagespeed_cache && /usr/local/nginx/sbin/nginx
+
+# 或
+rm -rf /var/ngx_pagespeed_cache && mkdir /var/ngx_pagespeed_cache && /usr/local/nginx/sbin/nginx -s reload
 ```
 
 ### 停止 NGINX
