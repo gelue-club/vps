@@ -89,3 +89,7 @@ alias lang_en="localectl list-locales | grep en_"
 alias lang_zh="localectl list-locales | grep zh_"
 
 alias p_netdata="sudo lsof -n -i :19999 | grep LISTEN"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
