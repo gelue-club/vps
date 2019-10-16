@@ -16,10 +16,21 @@
 - [X] 安装 `git`
 - [X] 安装 `nginx`
 - [X] 安装 `docker`
+- [X] 安装 `nvm`
+- [ ] 安装 `Yarn`
+- [ ] 安装 `Certbot`
 
+- [X] 安装 `node.js`
 - [X] 安装 `netdata`
 - [X] 安装 `oh-my-zsh`
 - [X] 安装 `sharkdp/bat`
+
+**更新现有软件包**
+```shell
+yum update && yum upgrade
+
+reboot
+```
 
 **升级内核**
 ```shell
@@ -44,13 +55,6 @@ sudo reboot
 
 # 检查内核是否已被更新
 uname -snr
-```
-
-**更新现有软件包**
-```shell
-yum update && yum upgrade
-
-reboot
 ```
 
 **依赖**
@@ -104,9 +108,9 @@ mv openssl-1.1.1c openssl
 **从源码安装 `git`**
 
 ```shell
-wget https://github.com/git/git/archive/v2.22.0.tar.gz
-tar -xzvf v2.22.0.tar.gz
-cd git-2.22.0
+wget https://github.com/git/git/archive/v2.23.0.tar.gz
+tar -xzvf v2.23.0.tar.gz
+cd git-2.23.0
 make configure
 ./configure --prefix=/usr/local --with-curl
 make install
@@ -152,6 +156,49 @@ sudo make install
 reboot
 
 /usr/local/nginx/sbin/nginx # 启动 NGINX
+```
+
+**Docker Community for CentOS**
+```shell
+sudo yum remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine
+
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+sudo yum install docker-ce docker-ce-cli containerd.io
+
+sudo systemctl enable docker
+sudo systemctl start docker
+
+sudo docker run hello-world
+```
+
+**NVM**
+```shell
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
+```
+
+**Yarn**
+```shell
+curl -o- -L https://yarnpkg.com/install.sh | bash
+```
+
+**Certbot**
+```shell
+```
+
+
+**node.js**
+```shell
+nvm install v10.16.3
+
+npm i -g npm node-gyp node-pre-gyp fkill-cli pm2 npm-check-updates flatten-folder-cli node-rdkafka
+```
+
+**netdata**
+```shell
+docker run -d --name=netdata -p 19999:19999 -v /etc/passwd:/host/etc/passwd:ro -v /etc/group:/host/etc/group:ro -v /proc:/host/proc:ro -v /sys:/host/sys:ro -v /var/run/docker.sock:/var/run/docker.sock:ro --cap-add SYS_PTRACE --security-opt apparmor=unconfined netdata/netdata
 ```
 
 **从源码安装 `oh-my-zsh`**
